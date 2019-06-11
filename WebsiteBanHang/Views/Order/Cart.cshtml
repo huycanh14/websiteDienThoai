@@ -1,0 +1,68 @@
+﻿
+@{
+    Layout = null;
+}
+<div ng-controller="orderController as ctrl" style="font-size: 17px;">
+    <div class="container" ng-if="ctrl.hasSession == true">
+        <div class="row">
+            <div class="col-xl-6">
+                <div class="row mt-3 mb-3" ng-repeat="order in ctrl.orders">
+                    <div class="col-xl-4">
+                        <img src="~/Image/{{order.img}}" style="width: 100%;" />
+                    </div>
+                    <div class="col-xl-8 align-self-center">
+                        <div class="row mt-3 mb-3">
+                            {{order.name}}
+                        </div>
+                        <div class="row mt-3 mb-3">
+                            Giá tiền: <span style="color: red;"> {{ctrl.convertCurrency(order.price)}} VNĐ</span>
+                        </div>
+                        <div class="row mt-3 mb-3">
+                            <input type="number" name="qty" value="" min="1" ng-model="order.qty" />
+                        </div>
+                        <div class="row mt-3 mb-3">
+                            <button class="btn btn-danger" ng-click="ctrl.deleteProduct(order)" style="font-size: 14px;">Xóa</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-5 mb-5">
+                    <div class="col-xl-3">
+                        <h2>Tổng tiền:</h2>
+                    </div>
+                    <div class="col-xl-7" style="color: red;">{{ctrl.convertCurrency(ctrl.total)}} VNĐ</div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-3">
+                        <button class="btn btn-success form-control" ng-click="ctrl.saveChangOrders()" style="font-size: 14px;">Lưu thay đổi</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-6">
+                <div class="row">
+                    <div class="col-xl-12"><h1>Nhập thông tin giao hàng</h1></div>
+                </div>
+                <form>
+                    <div class="form-group">
+                        <label for="">Tên người nhận</label>
+                        <input type="text" class="form-control" placeholder="Tên người nhận" style="font-size: 14px;" ng-model="ctrl.account.fullname">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Số điện thoại</label>
+                        <input type="text" class="form-control" placeholder="Số điện thoại" style="font-size: 14px;" ng-model="ctrl.account.phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Địa chỉ</label>
+                        <input type="text" class="form-control" placeholder="Địa chỉ nhận" style="font-size: 14px;" ng-model="ctrl.account.address">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="font-size: 14px;" ng-click="ctrl.handleSubmit()">Xác nhận</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container" ng-if="ctrl.hasSession == false">
+        <h1>Bạn chưa có sản phẩm trong đơn hàng</h1>
+    </div>
+</div>
+<link href="~/Content/toastr.min.css" rel="stylesheet" />
+<script src="~/Scripts/toastr.min.js"></script>

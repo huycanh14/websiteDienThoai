@@ -1,0 +1,39 @@
+﻿<div ng-controller="CustomerController as ctrl">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12 md-title">Danh sách khách hàng</div>
+        </div>
+        <div class="row mt-2 mb-2">
+            <div class="col-xl-6">
+                <input type="text" ng-keyup="ctrl.getkeys()" ng-model="ctrl.search" class="form-control" placeholder="Seacrh customer">
+            </div>
+        </div>
+        <div class="row">
+            <table class="table table-striped" border="1">
+                <thead>
+                    <tr class="table-success">
+                        <th scope="col">#</th>
+                        <th scope="col">Họ tên</th>
+                        <th scope="col">Giới tính</th>
+                        <th scope="col">Ngày sinh</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Số điện thoại</th>
+                        <th scope="col">Địa chỉ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="customer in ctrl.customers">
+                        <th scope="row">{{$index + 1}}</th>
+                        <td>{{customer.fullname}}</td>
+                        <td ng-if="customer.gender == 1">Nam</td>
+                        <td ng-if="customer.gender == 0">Nữ</td>
+                        <td>{{ctrl.convertDateTime(customer.date_of_birth)}}</td>
+                        <td>{{customer.email}}</td>
+                        <td>{{customer.phone}}</td>
+                        <td>{{customer.address}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+     </div>
+</div>

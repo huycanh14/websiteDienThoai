@@ -1,0 +1,38 @@
+﻿<div ng-controller="AccountController as ctrl">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12 md-title">Danh sách tài khoản</div>
+        </div>
+
+        <div class="row">
+            <table class="table table-striped" border="1">
+                <thead>
+                    <tr class="table-success">
+                        <th scope="col">#</th>
+                        <th scope="col">Họ tên</th>
+                        <th scope="col">Giới tính</th>
+                        <th scope="col">Ngày sinh</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Số điện thoại</th>
+                        <th scope="col">Địa chỉ</th>
+                        <th scope="col" colspan="2" class="text-xl-center">Tác vụ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="account in ctrl.accounts">
+                        <th scope="row">{{$index + 1}}</th>
+                        <td>{{account.fullname}}</td>
+                        <td ng-if="account.gender == 1">Nam</td>
+                        <td ng-if="account.gender == 0">Nữ</td>
+                        <td>{{ctrl.convertDateTime(account.date_of_birth)}}</td>
+                        <td>{{account.email}}</td>
+                        <td>{{account.phone}}</td>
+                        <td>{{account.address}}</td>
+                        <td><a href="#!/account_edit/{{account.id}}"><i class="fas fa-edit"></i> Edit</a></td>
+                        <td ng-click="ctrl.deleteAccount(account.id)" style="color:#4c84ff; cursor: pointer;"><i class="fas fa-backspace"></i> Delete</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

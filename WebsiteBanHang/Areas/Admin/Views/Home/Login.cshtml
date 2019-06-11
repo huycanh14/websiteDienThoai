@@ -1,0 +1,83 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500|Poppins:400,500,600,700|Roboto:400,500" rel="stylesheet" />
+    <link href="https://cdn.materialdesignicons.com/3.0.39/css/materialdesignicons.min.css" rel="stylesheet" />
+    <!-- PLUGINS CSS STYLE -->
+    <link href="~/Areas/Admin/assets/plugins/toaster/toastr.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/assets/plugins/nprogress/nprogress.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/assets/plugins/flag-icons/css/flag-icon.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/assets/plugins/jvectormap/jquery-jvectormap-2.0.3.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/assets/plugins/ladda/ladda.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/assets/plugins/select2/css/select2.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/assets/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" />
+    <link href="~/Angular/angular-material.min.css" rel="stylesheet" />
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
+    @*<link href="~/Areas/Admin/~/Areas/Admin/assets/css/sleek.css" rel="stylesheet" />*@
+    <!-- SLEEK CSS -->
+    <link id="sleek-css" rel="stylesheet" href="~/Areas/Admin/assets/css/sleek.css" />
+    <!-- FAVICON -->
+    @*<link href="~/Areas/Admin/assets/img/favicon.png" rel="shortcut icon" />*@
+</head>
+<body class="bg-light-gray" id="body" ng-app="adminApp">
+    <div class="container d-flex flex-column justify-content-between vh-100">
+        <div class="row justify-content-center mt-5">
+            <div class="col-xl-5 col-lg-6 col-md-10">
+                <div class="card">
+                    <div class="card-header bg-primary">
+                        <div class="app-brand">
+                            <svg class="brand-icon" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" width="30" height="33"
+                                 viewBox="0 0 30 33">
+                                <g fill="none" fill-rule="evenodd">
+                                    <path class="logo-fill-blue" fill="#7DBCFF" d="M0 4v25l8 4V0zM22 4v25l8 4V0z" />
+                                    <path class="logo-fill-white" fill="#FFF" d="M11 4v25l8 4V0z" />
+                                </g>
+                            </svg>
+                            <span class="brand-name">Sleek Dashboard</span>
+                        </div>
+                    </div>
+                    <div class="card-body p-5" ng-controller="loginController as ctrl">
+                        <h4 class="text-dark mb-5">Sign In</h4>
+                        <form ng-submit="ctrl.submit()">
+                            <div class="row">
+                                <div class="form-group col-md-12 mb-4">
+                                    <input type="email" class="form-control input-lg" id="email" aria-describedby="emailHelp" placeholder="Username" required ng-model="ctrl.user.email">
+                                </div>
+                                <div class="form-group col-md-12 ">
+                                    <input type="password" class="form-control input-lg" id="password" placeholder="Password" required ng-model="ctrl.user.password">
+                                </div>
+                                <div class="col-md-12">
+                                    <input id="submit" type="submit" class="btn btn-lg btn-primary btn-block mb-4" value="Sign in">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Areas/Admin/assets/plugins/nprogress/nprogress.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Areas/Admin/assets/js/login.js"></script>
+    <script src="~/Angular/angular.min.js"></script>
+    <script src="~/Angular/angular-animate.min.js"></script>
+    <script src="~/Angular/angular-aria.min.js"></script>
+    <script src="~/Angular/angular-messages.min.js"></script>
+    <script src="~/Angular/angular-material.min.js"></script>
+    <script src="~/Angular/angular-route.js"></script>
+    <script src="~/Angular/app.js"></script>
+    <script src="~/Angular/Services/adminService.js"></script>
+    <script src="~/Angular/Controllers/adminController.js"></script>
+    <script src="~/Angular/Routing.js"></script>
+    <script src="~/Scripts/toastr.min.js"></script>
+</body>
+</html>

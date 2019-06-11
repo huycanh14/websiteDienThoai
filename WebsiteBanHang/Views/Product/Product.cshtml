@@ -1,0 +1,64 @@
+﻿
+@{
+    Layout = null;
+}
+<div class="container">
+    <div ng-controller="productController as ctrl">
+        <div class="section">
+            <!-- container -->
+            <div class="container">
+                <!-- row -->
+                <div class="row">
+                    <!-- Product main img -->
+                    <!-- /Product main img -->
+                    <!-- Product thumb imgs -->
+                    <div class="col-xl-5">
+                        <img src="~/Image/{{ctrl.product.img}}" alt="" style="width: 100%;">
+                    </div>
+                    <!-- /Product thumb imgs -->
+                    <!-- Product details -->
+                    <div class="col-xl-5">
+                        <div class="product-details">
+                            <h2 class="product-name">{{ctrl.product.name}}</h2>
+                            <div>
+                                <h3 class="product-price">{{ctrl.convertCurrency(ctrl.product.price)}} VNĐ</h3>
+                            </div>
+                            <h3>Description</h3>
+                            <div class="description" ng-bind-html="ctrl.description" data-html="true"></div>
+
+                            <div class="product-options">
+                                <label>
+                                    Size: {{ctrl.product.size}}
+                                </label>
+                                <br />
+                                <label>
+                                    Color: {{ctrl.product.color}}
+                                </label>
+                            </div>
+
+                            <div class="add-to-cart">
+                                <div class="qty-label">
+                                    Qty
+                                    <div class="input-number">
+                                        <input type="number" ng-model="ctrl.qty" min="1">
+                                        <span class="qty-up" ng-click="ctrl.plus()">+</span>
+                                        <span class="qty-down" ng-click="ctrl.minus()">-</span>
+                                    </div>
+                                </div>
+                                <button class="add-to-cart-btn" ng-click="ctrl.addToCart()"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- /product tab -->
+                </div>
+                <!-- /row -->
+                <div class="row mt-5">
+                    <h3>Content</h3>
+                    <div class="content" ng-bind-html="ctrl.content" data-html="true"></div>
+                </div>
+            </div>
+            <!-- /container -->
+        </div>
+    </div>
+</div>

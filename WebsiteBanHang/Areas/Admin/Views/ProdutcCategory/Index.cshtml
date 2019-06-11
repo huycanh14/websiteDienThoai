@@ -1,0 +1,68 @@
+﻿<div ng-controller="ProductCategoryController as ctrl">
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-5">Danh sách danh mục sản phẩm!</h1> <span class="float-right"><button class="btn btn-dark" ng-click="ctrl.showCreate()">Thêm danh mục</button></span>
+            <hr class="my-4">
+            <table class="table table-striped" border="1">
+                <thead>
+                    <tr class=" bg-success">
+                        <th scope="col">#</th>
+                        <th scope="col">Tên</th>
+                        <th scope="col">Miêu tả</th>
+                        <th scope="col">Trạng thái</th>
+                        <th scope="col" colspan="2" class="text-xl-center">Tác vụ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="product_category in ctrl.product_categories">
+                        <th scope="row">{{$index + 1}}</th>
+                        <td>{{product_category.name}}</td>
+                        <td>{{product_category.description}}</td>
+                        <td ng-if="product_category.status == 0">Disabled</td>
+                        <td ng-if="product_category.status == 1">Active</td>
+                        <td ng-click="ctrl.getProductCategory(product_category.id)"><a href=""><i class="fas fa-edit"></i> Edit</a></td>
+                        <td ng-click="ctrl.deleteCategory(product_category.id)" style="color:#4c84ff; cursor: pointer;"><i class="fas fa-backspace"></i> Delete</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <form id="formEditCategory" class="form-horizontal table table-striped" style="display: none;">
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" ng-model="ctrl.product_category.name" class="form-control" placeholder="" required>
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <input type="text" ng-model="ctrl.product_category.description" class="form-control" placeholder="">
+            </div>
+            <div>
+                <label>Status</label>&emsp; &emsp;
+                <input type="radio" ng-model="ctrl.product_category.status" ng-value="0"> Disabled &emsp; &emsp;
+                <input type="radio" ng-model="ctrl.product_category.status" ng-value="1"> Active
+            </div>
+            <div class="text-xl-center">
+                <input type="submit" name="submit" value="Submit" class="btn btn-info" ng-click="ctrl.updateCategory()" />
+            </div>
+        </form>
+
+        <form id="formAddCategory" class="form-horizontal table table-striped" style="display: none;">
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" ng-model="ctrl.product_category.name" class="form-control" placeholder="" required>
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <input type="text" ng-model="ctrl.product_category.description" class="form-control" placeholder="">
+            </div>
+            <div>
+                <label>Status</label>&emsp; &emsp;
+                <input type="radio" ng-model="ctrl.product_category.status" ng-value="0"> Disabled &emsp; &emsp;
+                <input type="radio" ng-model="ctrl.product_category.status" ng-value="1"> Active
+            </div>
+            <div class="text-xl-center">
+                <input type="submit" name="submit" value="Submit" class="btn btn-info" ng-click="ctrl.createCategory()" />
+            </div>
+        </form>
+    </div>
+</div>

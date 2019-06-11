@@ -1,0 +1,58 @@
+﻿
+@{
+    Layout = null;
+}
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<div ng-controller="searchController as ctrl">
+    <div class="row">
+        <div class="col-xl-12 text-xl-center">
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <h1 class="display-4" ng-if="ctrl.show == true">Vui lòng nhập thông tin để tìm kiếm</h1>
+                    <div class="show container" >
+                        <div class="row" ng-if="ctrl.show == false">
+                            <div class="col-xs-3" ng-repeat="product in ctrl.products">
+                                <div class="product">
+                                    <div class="product-img">
+                                        <img src="~/Image/{{product.img}}" alt="">
+                                    </div>
+                                    <div class="product-body">
+                                        <h3 class="product-name"><a href="#">{{product.name}}</a></h3>
+                                        <h4 class="product-price">{{ctrl.convertCurrency(product.price)}}</h4>
+                                        <div class="product-rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <div class="product-btns">
+                                            <button class="quick-view">
+                                                <a href="#!/product/{{product.id}}"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></a>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="add-to-cart">
+                                        <button class="add-to-cart-btn" ng-click="ctrl.addToCart(product)"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="container">
+                                    <nav aria-label="Page navigation">
+                                        <ul class="pagination" id="pagination"></ul>
+                                    </nav>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.twbsPagination.min.js"></script>

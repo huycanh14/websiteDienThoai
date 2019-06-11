@@ -1,0 +1,122 @@
+﻿<style>
+    .switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+</style>
+<div ng-controller="AccountEditController as ctrl">
+    <div class="container-fluid">
+        <div class="row m-3">
+            <div class="col-xl-12 md-title">Sửa thông tin Account</div>
+        </div>
+        <form ng-submit="ctrl.submit()">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" ng-model="ctrl.account.email" readonly>
+            </div>
+            <div class="form-group">
+                <label for="pwd">Họ và tên:</label>
+                <input type="text" class="form-control" id="pwd" ng-model="ctrl.account.fullname" ng-required="true">
+            </div>
+            <div class="form-group">
+                <label>Giới tính &emsp; &emsp;</label>
+                <input type="radio" ng-model="ctrl.account.gender" ng-value="0" /> Nữ &emsp; &emsp;
+                <input type="radio" ng-model="ctrl.account.gender" ng-value="1" /> Nam
+            </div>
+            <div class="form-group">
+                <label for="pwd">Ngày sinh:</label>
+                <input type="date" class="form-control" ng-model="ctrl.date_of_birth" required>
+            </div>
+            <div class="form-group">
+                <label for="pwd">Điện thoại:</label>
+                <input type="text" class="form-control" ng-model="ctrl.account.phone" required>
+            </div>
+            <div class="form-group">
+                <label for="pwd">Địa chỉ:</label>
+                <input type="text" class="form-control" ng-model="ctrl.account.address" required>
+            </div>
+            <div class="form-group">
+                <label>Trạng thái &emsp; &emsp;</label>
+                <input type="radio" ng-model="ctrl.account.status" ng-value="0" /> Disabled &emsp; &emsp;
+                <input type="radio" ng-model="ctrl.account.status" ng-value="1" /> Active
+            </div>
+            <div class="form-group">
+                <label class="switch">
+                    <input type="checkbox" ng-model="ctrl.changePassword">
+                    <span class="slider round"></span>
+                </label>
+                <span class="align-self-center" style="font-size: 20px;">Thay đổi mật khẩu</span>
+            </div>
+            <div class="form-group" ng-show="ctrl.changePassword">
+                <label for="pwd">Mật khẩu mới:</label>
+                <input type="text" class="form-control" ng-model="ctrl.password">
+            </div>
+            <button type="submit" class="btn btn-danger" ng-click="ctrl.editAccount()">Submit</button>
+
+            <button type="submit" class="btn btn-dark" onclick="callBack()">Back</button>
+        </form>
+
+    </div>
+</div>
+<script>
+    function callBack() {
+        window.history.back();
+    }
+</script>

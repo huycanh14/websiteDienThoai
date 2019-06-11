@@ -1,0 +1,45 @@
+﻿<div ng-controller="OrderController as ctrl">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12  md-title">{{ctrl.title}}</div>
+        </div>
+        <div class="row">
+            <table class="table table-striped" border="1">
+                <thead>
+                    <tr class="table-success">
+                        <th scope="col">#</th>
+                        <th scope="col">Mã</th>
+                        <th scope="col">Số lượng</th>
+                        <th scope="col">Tổng tiền</th>
+                        <th scope="col">Người mua</th>
+                        <th scope="col">Số điện thoại</th>
+                        <th scope="col">Địa chỉ</th>
+                        <th scope="col">Ngày mua</th>
+                        <th scope="col" ng-if="ctrl.status == 1">Ngày giao hàng</th>
+                        <th scope="col">Tên tài khoản</th>
+                        <th scope="col" ng-if="ctrl.status == 0">Xác nhận</th>
+                        <th scope="col">Chi tiết</th>
+                        <th scope="col" ng-if="ctrl.status == 0">Xóa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="order in ctrl.orders">
+                        <th scope="row">{{$index + 1}}</th>
+                        <td>{{order.id}}</td>
+                        <td>{{order.qty}}</td>
+                        <td>{{ctrl.convertCurrency(order.price)}}</td>
+                        <td>{{order.name}}</td>
+                        <td>{{order.phone}}</td>
+                        <td>{{order.address}}</td>
+                        <td>{{ctrl.convertDateTime(order.created_at)}}</td>
+                        <td ng-if="ctrl.status == 1">{{ctrl.convertDateTime(order.updated_at)}}</td>
+                        <td>{{order.email}}</td>
+                        <td ng-if="ctrl.status == 0" style="color:#4c84ff; cursor: pointer;"><i class="fas fa-check" ng-click="ctrl.checkOrder(order.id)"></i></td>
+                        <td><a href="#!/order_item/{{order.id}}"><i class="fas fa-eye"></i></a></td>
+                        <td ng-if="ctrl.status == 0" style="color:#4c84ff; cursor: pointer;"><i class="fas fa-backspace" ng-click="ctrl.deleteOrder(order.id)" ></i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

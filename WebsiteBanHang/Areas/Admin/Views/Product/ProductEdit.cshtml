@@ -1,0 +1,126 @@
+﻿@model WebsiteBanHang.Areas.Admin.Models.Products
+
+@if (TempData["messageError"] != null)
+{
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+        var err = '@TempData["messageError"]';
+            toastr.error("", err);
+        })
+    </script>
+}
+@if (TempData["messageSuccess"] != null)
+{
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var mess = '@TempData["messageSuccess"]';
+            toastr.success("", mess);
+        })
+    </script>
+}
+@using (Html.BeginForm("ProductEdit", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container" ng-controller="ProductEditController as ctrl">
+        <div class="col-lg-10">
+            <div class="card card-default">
+                <div class="card-header card-header-border-bottom">
+                    <h2>Form thêm sản phẩm</h2>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="">Code</label>
+                            @Html.EditorFor(model => model.code, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                            @Html.ValidationMessageFor(model => model.code, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Tên sản phẩm</label>
+                            @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                            @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Thương hiệu sản phẩm</label>
+                            @*@Html.EditorFor(model => model.product_category_id, new { htmlAttributes = new { @class = "form-control" } })*@
+                            @Html.DropDownListFor(model => model.brand_id, new SelectList(ViewBag.Brands, "id", "name"), new { @class = "form-control" })
+                            @*@Html.ValidationMessageFor(model => model.product_category_id, "", new { @class = "text-danger" })*@
+                        </div>
+
+                        <div class="form-group">
+                            <label for="pwd">Danh mục sản phẩm</label>
+                            @*@Html.EditorFor(model => model.brand_id, new { htmlAttributes = new { @class = "form-control" } })*@
+                            @Html.DropDownListFor(model => model.product_category_id, new SelectList(ViewBag.Product_categories, "id", "name"), new { @class = "form-control" })
+                            @*@Html.ValidationMessageFor(model => model.brand_id, "", new { @class = "text-danger" })*@
+                        </div>
+
+                        <div class="form-group">
+                            <label for="pwd">Giá tiền</label>
+                            @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                            @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Số lượng</label>
+                            @Html.EditorFor(model => model.qty, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                            @Html.ValidationMessageFor(model => model.qty, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Kích thước</label>
+                            @Html.EditorFor(model => model.size, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                            @Html.ValidationMessageFor(model => model.size, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Màu sắc</label>
+                            @Html.EditorFor(model => model.color, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.color, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Hình ảnh</label>
+                            @*@Html.EditorFor(model => model.img, new { htmlAttributes = new { @class = "form-control", @type = "file" } })*@
+                            @*<input type="file" name="imge" value="" />*@
+                            @*<input type="file" name="uploadFile" id="uploadFile" required />*@
+                            <img src="~/Image/@Url.Content(Model.img)" alt="Alternate Text" width="20%"/>
+                            <input type="file" name="img" id="file" />
+
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Miêu tả</label>
+                            <div class="col-md-12">
+                                @Html.TextAreaFor(model => model.description, new { htmlAttributes = new { @class = "form-control" }, id = "Description" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="pwd">Nội dung</label>
+                            <div class="col-md-12">
+                                @Html.TextAreaFor(model => model.content, new { htmlAttributes = new { @class = "form-control" }, id = "Content" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Trạng thái</label>
+                            <div class="col-md-10">
+                                @Html.RadioButtonFor(m => m.status, "0") Vô hiệu
+                                @Html.RadioButtonFor(m => m.status, "1", new { @checked = true }) Kích hoạt
+                                @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Create" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    <a href="#!/product">Quay lại</a>
+</div>
+<script>CKEDITOR.replace("Description")</script>
+<script>CKEDITOR.replace("Content")</script>

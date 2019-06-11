@@ -1,0 +1,38 @@
+﻿<div ng-controller="Order_itemController as ctrl">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12  md-title">{{ctrl.title}}</div>
+        </div>
+        <div class="row">
+            <div class="col-xl-12">
+                <button class="btn btn-info" ng-click="ctrl.goBack()">Go back</button>
+            </div>
+        </div>
+        <table class="table table-striped" border="1">
+            <thead>
+                <tr class="table-success">
+                    <th scope="col">#</th>
+                    <th scope="col">Mã sản phẩm</th>
+                    <th scope="col">Tên sản phẩm</th>
+                    <th scope="col">Số lượng</th>
+                    <th scope="col">Giá tiền</th>
+                    <th scope="col">Tổng tiền</th>
+                    <th scope="col">Màu sắc</th>
+                    <th scope="col">Kích thước</th>
+                </tr>
+             </thead>
+            <tbody>
+                <tr ng-repeat="item in ctrl.order_items">
+                    <th scope="row">{{$index + 1}}</th>
+                    <td>{{item.code}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.qty}}</td>
+                    <td>{{item.price}}</td>
+                    <td>{{item.total}}</td>
+                    <td>{{item.size}}</td>
+                    <td>{{item.color}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

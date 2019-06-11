@@ -1,0 +1,46 @@
+﻿<div ng-controller="AccountCreateController as ctrl">
+    <div class="container-fluid">
+        <div class="row m-3">
+            <div class="col-xl-12 md-title">Thêm thông tin Account</div>
+        </div>
+        <form ng-submit="ctrl.submit()">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" ng-model="ctrl.account.email" required>
+            </div>
+            <div class="form-group">
+                <label for="pwd">Họ và tên:</label>
+                <input type="text" class="form-control" id="pwd" ng-model="ctrl.account.fullname" ng-required="true">
+            </div>
+            <div class="form-group">
+                <label>Giới tính &emsp; &emsp;</label>
+                <input type="radio" ng-model="ctrl.account.gender" ng-value="0" /> Nữ &emsp; &emsp;
+                <input type="radio" ng-model="ctrl.account.gender" ng-value="1" /> Nam
+            </div>
+            <div class="form-group">
+                <label for="pwd">Ngày sinh:</label>
+                <input type="date" class="form-control" ng-model="ctrl.date_of_birth" required>
+            </div>
+            <div class="form-group">
+                <label for="pwd">Mật khẩu:</label>
+                <input type="text" class="form-control" ng-model="ctrl.account.password" required>
+            </div>
+            <div class="form-group">
+                <label for="pwd">Điện thoại:</label>
+                <input type="text" class="form-control" ng-model="ctrl.account.phone" required>
+            </div>
+            <div class="form-group">
+                <label for="pwd">Địa chỉ:</label>
+                <input type="text" class="form-control" ng-model="ctrl.account.address" required>
+            </div>
+            <div class="form-group">
+                <label>Trạng thái &emsp; &emsp;</label>
+                <input type="radio" ng-model="ctrl.account.status" ng-value="0" /> Disabled &emsp; &emsp;
+                <input type="radio" ng-model="ctrl.account.status" ng-value="1" /> Active
+            </div>
+            <button type="submit" class="btn btn-danger" ng-click="ctrl.createAccount()">Submit</button>
+        </form>
+
+    </div>
+</div>
+

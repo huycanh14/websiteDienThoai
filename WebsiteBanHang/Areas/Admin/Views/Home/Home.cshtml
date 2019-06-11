@@ -1,0 +1,93 @@
+﻿<div class="container" ng-controller="HomeController as ctrl">
+    <div class="row">
+        <div class="col-xl-3">
+            <div class="pl-3 pr-3 badge-primary">
+                <div class="row">
+                    <div class="col-xl-6 float-left align-self-center"><i class="fas fa-newspaper fa-2x"></i></div>
+                    <div class="col-xl-6 text-white fa-2x float-right text-xl-right align-self-center">{{ctrl.count_order_new}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-12 text-xl-center font-weight-bold font-size-16">Đơn hàng chưa được giao</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3">
+            <div class="pl-3 pr-3 badge-success">
+                <div class="row">
+                    <div class="col-xl-6 float-left align-self-center"><i class="fas fa-clipboard-check fa-2x"></i></div>
+                    <div class="col-xl-6 text-white fa-2x float-right text-xl-right align-self-center">{{ctrl.count_order_old}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-12 text-xl-center font-weight-bold font-size-16">Đơn hàng đã được giao</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3">
+            <div class="pl-3 pr-3 badge-secondary">
+                <div class="row">
+                    <div class="col-xl-6 float-left align-self-center"><i class="fas fa-users fa-2x"></i></div>
+                    <div class="col-xl-6 text-white fa-2x float-right text-xl-right align-self-center">{{ctrl.count_customer}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-12 text-xl-center font-weight-bold font-size-16">Số tài khoản</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3">
+            <div class="pl-3 pr-3 badge-warning">
+                <div class="row">
+                    <div class="col-xl-6 float-left align-self-center"><i class="fas fa-users fa-2x"></i></div>
+                    <div class="col-xl-6 text-white fa-2x float-right text-xl-right align-self-center">{{ctrl.count_product}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-12 text-xl-center font-weight-bold font-size-16">Số sản phẩm</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5 mb-5">
+        <div class="col-xl-12"><h3>Thống kê thương hiệu sản phẩm</h3></div>
+        <table class="table table-striped">
+            <thead class="badge-success">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Tên</th>
+                    <th scope="col">Số lượng</th>
+                    <th scope="col">Chi tiết</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="brand in ctrl.brands">
+                    <th scope="row">{{$index + 1}}</th>
+                    <td>{{brand.name}}</td>
+                    <td>{{brand.count}}</td>
+                    <td><a href="#"><i class="fas fa-search fa-2x"></i></a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row mt-5 mb-5">
+        <div class="col-xl-12"><h3>Thống kê danh mục sản phẩm</h3></div>
+        <table class="table table-striped">
+            <thead class="badge-success">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Tên</th>
+                    <th scope="col">Số lượng</th>
+                    <th scope="col">Chi tiết</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="product_category in ctrl.product_categories">
+                    <th scope="row">{{$index + 1}}</th>
+                    <td>{{product_category.name}}</td>
+                    <td>{{product_category.count}}</td>
+                    <td><a href="#"><i class="fas fa-search fa-2x"></i></a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
